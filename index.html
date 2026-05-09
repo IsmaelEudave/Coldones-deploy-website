@@ -450,6 +450,8 @@
       gap: 1rem;
       width: max-content;
       will-change: transform;
+      transform: translateZ(0);
+      backface-visibility: hidden;
       animation: slider-scroll 28s linear infinite;
     }
 
@@ -1490,7 +1492,11 @@
       }
 
       let _resizeTimer;
+      let _lastSliderWidth = window.innerWidth;
       window.addEventListener('resize', function () {
+        const w = window.innerWidth;
+        if (w === _lastSliderWidth) return;
+        _lastSliderWidth = w;
         clearTimeout(_resizeTimer);
         _resizeTimer = setTimeout(initSlider, 150);
       });

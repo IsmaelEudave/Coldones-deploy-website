@@ -3,12 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cold Ones Event Solutions — Your One-Stop Event Experience</title>
+  <title>Cold Ones Event Solutions — DJ, Sound, Lighting &amp; Event Coordination</title>
+  <meta name="description" content="Cold Ones Event Solutions is a veteran-owned DJ, sound, lighting, and event coordination company. One team handles everything — weddings, corporate events, private parties, and more. Nationwide service.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.coldonesevent.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.coldonesevent.com/">
+  <meta property="og:title" content="Cold Ones Event Solutions — DJ, Sound, Lighting &amp; Event Coordination">
+  <meta property="og:description" content="Veteran-owned event production company covering DJ, audio, lighting, and full coordination under one roof. 500+ events. 100% satisfaction. Nationwide.">
+  <meta property="og:image" content="https://www.coldonesevent.com/brand_assets/SolidColdOnes.webp">
+  <meta property="og:site_name" content="Cold Ones Event Solutions">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cold Ones Event Solutions — DJ, Sound, Lighting &amp; Event Coordination">
+  <meta name="twitter:description" content="Veteran-owned event production company covering DJ, audio, lighting, and full coordination under one roof. 500+ events. Nationwide.">
+  <meta name="twitter:image" content="https://www.coldonesevent.com/brand_assets/SolidColdOnes.webp">
+
+  <link rel="icon" type="image/png" href="brand_assets/ColdOnesLogo.png">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -81,7 +100,7 @@
       display: flex; align-items: center; text-decoration: none;
       z-index: 1;
     }
-    .nav-logo-center img { height: 85px; width: auto; }
+    .nav-logo-center img { height: 70px; width: auto; }
     .btn-nav {
       background: var(--gold); color: #0A0800;
       font-weight: 700; font-size: 0.8rem;
@@ -660,12 +679,11 @@
       padding: 4.5rem 2.5rem 2rem;
     }
     .footer-top {
-      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
       gap: 3rem; margin-bottom: 3.5rem;
     }
     .footer-brand img {
-      height: 44px; background: #fff;
-      border-radius: 6px; padding: 3px 7px;
+      height: 44px; width: auto;
       margin-bottom: 1.25rem; display: block;
     }
     .footer-brand p {
@@ -713,8 +731,14 @@
       section { padding: 5rem 1.25rem; }
       .stats-section { padding: 4rem 1.25rem; }
       .nav { padding: 0 1.25rem; }
-      .nav-links, .btn-nav { display: none; }
+      .nav-links { display: none; }
       .hamburger { display: flex; }
+      .btn-nav {
+        font-size: 0.525rem;
+        padding: 0.34rem 0.6rem;
+        letter-spacing: 0.04em;
+        border-radius: 5px;
+      }
       .svc-grid      { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .reviews-grid  { grid-template-columns: 1fr; }
@@ -742,10 +766,10 @@
     <a href="#home" class="nav-logo-center">
       <img src="brand_assets/SolidColdOnes.webp" alt="Cold Ones Event Solutions" width="600" height="449" fetchpriority="high" decoding="async">
     </a>
-    <a href="#contact" class="btn-nav">Request a Quote</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
+    <a href="#contact" class="btn-nav">Request a Quote</a>
   </nav>
 
   <div class="mobile-overlay" id="mobileOverlay"></div>
@@ -757,7 +781,6 @@
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#contact" class="btn-primary mob-cta">Request a Quote</a>
   </div>
 
   <!-- HERO -->
@@ -830,7 +853,7 @@
       <div class="svc-header">
         <div>
           <span class="s-tag">What We Do</span>
-          <div class="s-title">One company.<br><span class="gold">Every event need.</span></div>
+          <h2 class="s-title">One company.<br><span class="gold">Every event need.</span></h2>
         </div>
         <p class="s-sub">From corporate mixers to weddings and private parties — we bring the full production package so nothing falls through the cracks.</p>
       </div>
@@ -839,28 +862,28 @@
           <div class="svc-icon-wrap">
             <img src="brand_assets/GoldIcons/SoundPng.webp" alt="Sound & Audio" width="520" height="420" loading="lazy" decoding="async">
           </div>
-          <div class="svc-name">Sound &amp; Audio</div>
+          <h3 class="svc-name">Sound &amp; Audio</h3>
           <p class="svc-desc">Crystal-clear PA systems, wireless mics, and live audio mixing tailored to your venue and crowd size.</p>
         </article>
         <article class="svc-card reveal">
           <div class="svc-icon-wrap">
             <img src="brand_assets/GoldIcons/LightIcon.webp" alt="Event Lighting" width="520" height="420" loading="lazy" decoding="async">
           </div>
-          <div class="svc-name">Event Lighting</div>
+          <h3 class="svc-name">Event Lighting</h3>
           <p class="svc-desc">Uplighting, spotlights, intelligent fixtures, and custom color programming that transforms any space.</p>
         </article>
         <article class="svc-card reveal">
           <div class="svc-icon-wrap">
             <img src="brand_assets/GoldIcons/BriefcaseIcon.webp" alt="Event Coordination" width="520" height="420" loading="lazy" decoding="async">
           </div>
-          <div class="svc-name">Event Coordination</div>
+          <h3 class="svc-name">Event Coordination</h3>
           <p class="svc-desc">Day-of coordination and full production management so every detail lands exactly as planned.</p>
         </article>
         <article class="svc-card reveal">
           <div class="svc-icon-wrap">
             <img src="brand_assets/GoldIcons/MediaIcon.webp" alt="Audio Visual" width="520" height="420" loading="lazy" decoding="async">
           </div>
-          <div class="svc-name">Audio Visual</div>
+          <h3 class="svc-name">Audio Visual</h3>
           <p class="svc-desc">LED screens, projectors, IMAG systems, and seamless AV integration for presentations and entertainment.</p>
         </article>
       </div>
@@ -873,27 +896,27 @@
       <div class="about-grid">
         <div>
           <span class="s-tag">Why Cold Ones</span>
-          <div class="s-title">Everything handled.<br><span class="gold">Nothing left to chance.</span></div>
+          <h2 class="s-title">Everything handled.<br><span class="gold">Nothing left to chance.</span></h2>
           <p class="s-sub">We don't subcontract or hand you off. Every event gets our direct attention — from the first call to the final song.</p>
           <div class="about-feats">
             <div class="about-feat">
               <div class="feat-dot"></div>
               <div>
-                <div class="feat-title">Single Point of Contact</div>
+                <h3 class="feat-title">Single Point of Contact</h3>
                 <p class="feat-desc">No chasing multiple vendors. One call handles sound, lights, DJ, and coordination.</p>
               </div>
             </div>
             <div class="about-feat">
               <div class="feat-dot"></div>
               <div>
-                <div class="feat-title">Professional-Grade Equipment</div>
+                <h3 class="feat-title">Professional-Grade Equipment</h3>
                 <p class="feat-desc">We invest in top-tier gear so your event sounds and looks world class, every time.</p>
               </div>
             </div>
             <div class="about-feat">
               <div class="feat-dot"></div>
               <div>
-                <div class="feat-title">Real Accountability</div>
+                <h3 class="feat-title">Real Accountability</h3>
                 <p class="feat-desc">Veteran-owned means we show up, do the job right, and take full ownership of the outcome.</p>
               </div>
             </div>
@@ -941,31 +964,31 @@
     <div class="container">
       <div style="text-align:center;max-width:580px;margin:0 auto">
         <span class="s-tag">How It Works</span>
-        <div class="s-title">Straightforward booking.<br><span class="gold">Zero surprises.</span></div>
+        <h2 class="s-title">Straightforward booking.<br><span class="gold">Zero surprises.</span></h2>
       </div>
       <div class="process-steps">
         <div class="proc-step reveal">
           <div class="proc-num">01</div>
           <div class="proc-icon"><i class="fas fa-phone-alt"></i></div>
-          <div class="proc-title">Free Consultation</div>
+          <h3 class="proc-title">Free Consultation</h3>
           <p class="proc-desc">Tell us about your event. We listen, ask the right questions, and build a plan around your vision and budget.</p>
         </div>
         <div class="proc-step reveal">
           <div class="proc-num">02</div>
           <div class="proc-icon"><i class="fas fa-file-signature"></i></div>
-          <div class="proc-title">Custom Quote</div>
+          <h3 class="proc-title">Custom Quote</h3>
           <p class="proc-desc">You get a clear, itemized proposal with no hidden fees. Approve it, sign, and your date is locked in.</p>
         </div>
         <div class="proc-step reveal">
           <div class="proc-num">03</div>
           <div class="proc-icon"><i class="fas fa-tools"></i></div>
-          <div class="proc-title">Setup &amp; Sound Check</div>
+          <h3 class="proc-title">Setup &amp; Sound Check</h3>
           <p class="proc-desc">Our crew arrives early, sets everything up, and runs a full tech check before a single guest walks in.</p>
         </div>
         <div class="proc-step reveal">
           <div class="proc-num">04</div>
           <div class="proc-icon"><i class="fas fa-glass-cheers"></i></div>
-          <div class="proc-title">You Enjoy the Event</div>
+          <h3 class="proc-title">You Enjoy the Event</h3>
           <p class="proc-desc">We handle the production from start to finish. Your only job is to be present and enjoy your event.</p>
         </div>
       </div>
@@ -977,7 +1000,7 @@
     <div class="container">
       <div style="text-align:center;max-width:540px;margin:0 auto">
         <span class="s-tag">Reviews</span>
-        <div class="s-title">What our clients say.</div>
+        <h2 class="s-title">What our clients say.</h2>
       </div>
       <div class="reviews-grid">
         <div class="rev-card reveal">
@@ -1032,7 +1055,7 @@
       <div class="faq-layout">
         <div>
           <span class="s-tag">FAQ</span>
-          <div class="s-title">Common questions.</div>
+          <h2 class="s-title">Common questions.</h2>
           <p class="s-sub" style="margin-top:1rem">Can't find what you're looking for? We'll get back to you within 24 hours.</p>
           <a href="#contact" class="btn-primary" style="margin-top:2rem;display:inline-block">Contact Us</a>
         </div>
@@ -1092,7 +1115,7 @@
       <div class="contact-grid">
         <div>
           <span class="s-tag">Get In Touch</span>
-          <div class="s-title">Let's make your event <span class="gold">happen.</span></div>
+          <h2 class="s-title">Let's make your event <span class="gold">happen.</span></h2>
           <p class="s-sub" style="margin-bottom:2.5rem">Tell us about your event and we'll follow up within 24 hours with a custom quote — no pressure, no fluff.</p>
           <div class="contact-info">
             <div class="contact-item">
@@ -1175,10 +1198,6 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
-        <div class="footer-brand">
-          <img src="brand_assets/ColdOnesLogo.webp" alt="Cold Ones Event Solutions" width="400" height="299" loading="lazy" decoding="async">
-          <p>Veteran owned and operated. Military discipline applied to every event we take on. Your one-stop event experience.</p>
-        </div>
         <div>
           <span class="footer-col-title">Services</span>
           <ul class="footer-links">
@@ -1218,6 +1237,42 @@
     </div>
   </footer>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Cold Ones Event Solutions",
+    "description": "Veteran-owned DJ, sound, lighting, and event coordination company serving weddings, corporate events, private parties, and more. Nationwide service.",
+    "url": "https://www.coldonesevent.com",
+    "logo": "https://www.coldonesevent.com/brand_assets/ColdOnesLogo.png",
+    "image": "https://www.coldonesevent.com/brand_assets/SolidColdOnes.webp",
+    "telephone": "+15551234567",
+    "email": "info@coldonesevent.com",
+    "areaServed": "United States",
+    "priceRange": "$$",
+    "foundingDate": "2017",
+    "slogan": "Your One-Stop Event Experience",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Event Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DJ & Entertainment" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sound & Audio" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Event Lighting" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Audio Visual" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Event Coordination" } }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "50"
+    },
+    "sameAs": []
+  }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>
     // ---- Animated hero background paths (GSAP) ----
     (function() {

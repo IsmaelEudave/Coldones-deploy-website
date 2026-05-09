@@ -1,0 +1,8 @@
+node_modules/
+temporary screenshots/
+screenshots/
+.tmp/
+.env
+credentials.json
+token.json
+*.log

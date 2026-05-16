@@ -664,7 +664,8 @@
     .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
     .form-select { cursor: pointer; }
     .form-select option { background: var(--dark-4); }
-    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-textarea { resize: vertical; min-height: 160px; }
+    .form-input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.6; }
     .btn-submit {
       width: 100%; background: var(--gold); color: #0A0800;
       font-family: 'Barlow', sans-serif; font-weight: 700;
@@ -831,9 +832,6 @@
       <li><a href="#contact">Contact</a></li>
       <li class="nav-cursor" id="navCursor" aria-hidden="true"></li>
     </ul>
-    <a href="#home" class="nav-logo-center">
-      <img src="brand_assets/SolidColdOnes.webp" alt="Cold Ones Event Solutions" width="600" height="449" fetchpriority="high" decoding="async">
-    </a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -1234,13 +1232,6 @@
               </div>
             </div>
             <div class="contact-item">
-              <div class="c-icon"><i class="fas fa-phone-alt"></i></div>
-              <div>
-                <span class="c-label">Phone</span>
-                <span class="c-val">(555) 123-4567</span>
-              </div>
-            </div>
-            <div class="contact-item">
               <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
               <div>
                 <span class="c-label">Service Area</span>
@@ -1275,7 +1266,7 @@
                 <label class="form-label">Phone</label>
                 <input class="form-input" type="tel" placeholder="(555) 000-0000">
               </div>
-              <div class="form-group full">
+              <div class="form-group">
                 <label class="form-label">Event Type</label>
                 <select class="form-select" required>
                   <option value="" disabled selected>Select event type</option>
@@ -1289,6 +1280,10 @@
                   <option>Military Ceremony</option>
                   <option>Other</option>
                 </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Event Date</label>
+                <input class="form-input" type="date" required>
               </div>
               <div class="form-group full">
                 <label class="form-label">Tell us about your event</label>
@@ -1333,7 +1328,7 @@
         </div>
         <div class="form-group">
           <label class="form-label">Other — tell us what you need</label>
-          <input class="form-input" type="text" name="other" placeholder="e.g. Photo booth, catering recommendations...">
+          <textarea class="form-textarea" name="other" placeholder="e.g. Photo booth, catering recommendations, anything else you'd love to have at your event..."></textarea>
         </div>
         <button class="btn-submit" id="surveySub" type="submit" style="margin-top:1.5rem">
           Submit Feedback &nbsp;<i class="fas fa-paper-plane"></i>
@@ -1370,7 +1365,6 @@
           <ul class="footer-links">
             <li><a href="#contact">Request a Quote</a></li>
             <li><a href="mailto:Cold1c2020@gmail.com">Cold1c2020@gmail.com</a></li>
-            <li><a href="tel:5551234567">(555) 123-4567</a></li>
           </ul>
         </div>
       </div>
@@ -1394,7 +1388,6 @@
     "url": "https://www.coldonesevents.com",
     "logo": "https://www.coldonesevents.com/brand_assets/ColdOnesLogo.png",
     "image": "https://www.coldonesevents.com/brand_assets/SolidColdOnes.webp",
-    "telephone": "+15551234567",
     "email": "Cold1c2020@gmail.com",
     "areaServed": "Oklahoma",
     "priceRange": "$$",

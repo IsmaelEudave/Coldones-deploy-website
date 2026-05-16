@@ -762,8 +762,10 @@
 
     /* ==================== HERO LOGO ==================== */
     .hero-main-logo {
-      width: 100%; max-width: 860px; height: auto;
-      display: block; margin: 0 auto 2.75rem;
+      width: auto; max-width: min(640px, 90vw);
+      max-height: calc(100vh - 260px);
+      height: auto;
+      display: block; margin: 0 auto 2.5rem;
       mix-blend-mode: multiply;
     }
 

@@ -790,16 +790,18 @@
       margin-bottom: 4.5rem;
       width: 100vw;
       margin-left: calc(-50vw + 50%);
+      /* clip-path clips left/right but negative top/bottom values allow vertical overflow */
+      clip-path: inset(-15rem 0 -20rem 0);
     }
     .svc-gallery-header { text-align: center; max-width: 600px; margin: 0 auto 2.5rem; }
 
     /* ==================== PERSPECTIVE GALLERY ==================== */
     .pg-outer {
-      overflow: hidden;
-      padding: 2.5rem 0 5rem;
+      padding: 3rem 0;
     }
     .pg-stage {
-      transform: perspective(900px) rotateX(16deg) rotateY(-8deg) rotateZ(10deg);
+      /* mirrored: low end left, high end right */
+      transform: perspective(900px) rotateX(16deg) rotateY(8deg) rotateZ(-10deg);
       transform-style: preserve-3d;
       transform-origin: center center;
     }
@@ -809,6 +811,7 @@
       will-change: transform; transform: translateZ(0);
       backface-visibility: hidden;
       animation: pg-scroll 35s linear infinite;
+      animation-play-state: paused; /* JS plays after setup — eliminates reset stutter */
     }
     @keyframes pg-scroll {
       from { transform: translateX(0); }
@@ -1645,15 +1648,15 @@
       function initPgTrack() {
         const track = document.getElementById('pgTrack');
         if (!track) return;
-        track.querySelectorAll('[data-clone]').forEach(el => el.remove());
+        track.querySelectorAll('[data-clone]').forEach(function(el) { el.remove(); });
         const origSlides = Array.from(track.querySelectorAll('.pg-slide'));
         if (!origSlides.length) return;
-        const colGap = parseFloat(getComputedStyle(track).gap) || 20;
+        const colGap = parseFloat(getComputedStyle(track).columnGap) || 20;
         const slideW = origSlides[0].getBoundingClientRect().width;
         const setWidth = origSlides.length * (slideW + colGap);
-        const needed = Math.ceil((window.innerWidth * 5) / setWidth) + 1;
+        const needed = Math.ceil((window.innerWidth * 5) / setWidth) + 2;
         for (let i = 0; i < needed; i++) {
-          origSlides.forEach(slide => {
+          origSlides.forEach(function(slide) {
             const clone = slide.cloneNode(true);
             clone.setAttribute('aria-hidden', 'true');
             clone.setAttribute('data-clone', '1');
@@ -1661,9 +1664,10 @@
           });
         }
         track.style.setProperty('--pg-dist', `-${setWidth}px`);
-        track.style.animation = 'none';
-        track.offsetWidth;
-        track.style.animation = '';
+        /* pause → reflow → play: sets correct distance before first frame, no reset stutter */
+        track.style.animationPlayState = 'paused';
+        void track.offsetWidth;
+        track.style.animationPlayState = 'running';
       }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initPgTrack);

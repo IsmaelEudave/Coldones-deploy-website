@@ -260,6 +260,19 @@
       50%       { transform: scaleY(0.55); opacity: 1; }
     }
 
+    /* ==================== FLOATING PARALLAX ICONS ==================== */
+    .float-icon {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform;
+    }
+    .float-img {
+      display: block;
+      filter: drop-shadow(0 8px 28px rgba(196,154,18,0.22)) drop-shadow(0 2px 8px rgba(0,0,0,0.45));
+      opacity: 0.82;
+    }
+
     /* ==================== SHARED ==================== */
     section { padding: 7rem 2.5rem; }
     .container { max-width: 1200px; margin: 0 auto; }
@@ -755,6 +768,7 @@
       .footer-top    { grid-template-columns: 1fr; }
       .form-grid     { grid-template-columns: 1fr; }
       .hero-ctas     { flex-direction: column; align-items: center; }
+      .float-icon    { display: none; }
       .about-grid    { gap: 3rem; }
       .contact-grid  { gap: 3rem; }
       .faq-layout    { gap: 3rem; }
@@ -767,6 +781,8 @@
       max-height: calc(100vh - 260px);
       height: auto;
       display: block; margin: 0 auto 2.5rem;
+      filter: drop-shadow(0 16px 56px rgba(196,154,18,0.18)) drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+      position: relative; z-index: 1;
     }
 
     /* ==================== SERVICE CARDS (CONTENT) ==================== */
@@ -852,18 +868,33 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-glow"></div>
+
+    <!-- Floating parallax icons — aria-hidden, decorative only -->
+    <div class="float-icon" data-float-depth="2" data-float-rot="-4" style="top:12%;left:3%" aria-hidden="true">
+      <img class="float-img" src="brand_assets/GoldIcons/MicrophoneIcon.webp" alt="" width="100" loading="lazy" decoding="async">
+    </div>
+    <div class="float-icon" data-float-depth="1" data-float-rot="-12" style="top:5%;left:11%" aria-hidden="true">
+      <img class="float-img" src="brand_assets/GoldIcons/SoundPng.webp" alt="" width="145" loading="lazy" decoding="async">
+    </div>
+    <div class="float-icon" data-float-depth="3.5" data-float-rot="-4" style="top:70%;left:4%" aria-hidden="true">
+      <img class="float-img" src="brand_assets/GoldIcons/LightIcon.webp" alt="" width="175" loading="lazy" decoding="async">
+    </div>
+    <div class="float-icon" data-float-depth="1.5" data-float-rot="6" style="top:4%;right:9%" aria-hidden="true">
+      <img class="float-img" src="brand_assets/GoldIcons/BriefcaseIcon.webp" alt="" width="175" loading="lazy" decoding="async">
+    </div>
+    <div class="float-icon" data-float-depth="1" data-float-rot="18" style="top:64%;right:5%" aria-hidden="true">
+      <img class="float-img" src="brand_assets/GoldIcons/MediaIcon.webp" alt="" width="195" loading="lazy" decoding="async">
+    </div>
+
     <div class="hero-inner">
-      <picture>
-        <source srcset="brand_assets/Starter%20Logo%20Transparent.webp" type="image/webp">
-        <img
-          src="brand_assets/Starter%20Logo%20Transparent.png"
-          alt="Coldones Events — Professional DJ Services Oklahoma City, Veteran Owned, Open-Format DJ, Se Habla Español"
-          width="1402" height="1122"
-          class="hero-main-logo"
-          fetchpriority="high"
-          loading="eager"
-          decoding="async">
-      </picture>
+      <img
+        src="brand_assets/hero-graphic.webp"
+        alt="Coldones Events — Professional DJ Services Oklahoma City, Veteran Owned, Open-Format DJ, Se Habla Español"
+        width="1400" height="1119"
+        class="hero-main-logo"
+        fetchpriority="high"
+        loading="eager"
+        decoding="async">
       <div class="hero-ctas">
         <a href="#contact" class="btn-primary">Check Availability</a>
         <a href="#services" class="btn-ghost">View Services</a>
@@ -1600,6 +1631,37 @@
         }
       });
     });
+
+    // ---- Floating parallax icons ----
+    (function () {
+      var hero = document.querySelector('.hero');
+      if (!hero) return;
+      var icons = Array.from(hero.querySelectorAll('.float-icon'));
+      if (!icons.length) return;
+      var mx = 0, my = 0, lx = 0, ly = 0;
+      var FACTOR = 22;
+      hero.addEventListener('mousemove', function (e) {
+        var r = hero.getBoundingClientRect();
+        mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        my = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      });
+      hero.addEventListener('mouseleave', function () { mx = 0; my = 0; });
+      var t = 0;
+      function tick() {
+        t += 0.008;
+        lx += (mx - lx) * 0.07;
+        ly += (my - ly) * 0.07;
+        icons.forEach(function (icon, i) {
+          var depth = parseFloat(icon.dataset.floatDepth) || 1;
+          var rot = parseFloat(icon.dataset.floatRot) || 0;
+          var tx = lx * FACTOR * depth;
+          var ty = ly * FACTOR * depth + Math.sin(t + i * 0.9) * 7;
+          icon.style.transform = 'translate(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px) rotate(' + rot + 'deg)';
+        });
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
 
     // ---- Infinite slider: clone enough sets to always overfill viewport ----
     (function () {

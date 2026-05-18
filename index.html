@@ -1634,12 +1634,12 @@
       });
     });
 
-    // ---- Floating parallax icons + hero logo 3D tilt ----
+    // ---- Floating parallax icons ----
     (function () {
       var hero = document.querySelector('.hero');
       if (!hero) return;
       var icons = Array.from(hero.querySelectorAll('.float-icon'));
-      var logo  = hero.querySelector('.hero-main-logo');
+      if (!icons.length) return;
       var mx = 0, my = 0, lx = 0, ly = 0;
       var FACTOR = 22;
       hero.addEventListener('mousemove', function (e) {
@@ -1653,7 +1653,6 @@
         t += 0.008;
         lx += (mx - lx) * 0.07;
         ly += (my - ly) * 0.07;
-        // Floating icons parallax
         icons.forEach(function (icon, i) {
           var depth = parseFloat(icon.dataset.floatDepth) || 1;
           var rot = parseFloat(icon.dataset.floatRot) || 0;
@@ -1661,12 +1660,6 @@
           var ty = ly * FACTOR * depth + Math.sin(t + i * 0.9) * 7;
           icon.style.transform = 'translate(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px) rotate(' + rot + 'deg)';
         });
-        // Logo 3D tilt — subtle perspective rotation following cursor
-        if (logo) {
-          var rx = (-ly * 9).toFixed(2);
-          var ry = ( lx * 9).toFixed(2);
-          logo.style.transform = 'perspective(700px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
-        }
         requestAnimationFrame(tick);
       }
       tick();

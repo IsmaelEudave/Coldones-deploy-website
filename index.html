@@ -779,6 +779,8 @@
       .form-grid     { grid-template-columns: 1fr; }
       .hero-ctas     { flex-direction: column; align-items: center; }
       .float-icon    { display: none; }
+      .sv-grid       { grid-template-columns: repeat(2, 1fr); }
+      .survey-form   { padding: 1.5rem; }
       .about-grid    { gap: 3rem; }
       .about-card    { padding: 1.5rem; }
       .about-meta    { flex-wrap: wrap; gap: 1.25rem; }
@@ -817,10 +819,69 @@
     /* ==================== SURVEY SECTION ==================== */
     .survey-sec { background: var(--dark-2); }
     .survey-form {
-      max-width: 720px; margin: 3.5rem auto 0;
+      max-width: 900px; margin: 3.5rem auto 0;
       background: var(--dark-3);
       border: 1px solid var(--border);
       border-radius: 20px; padding: 2.5rem;
+    }
+    .sv-question {
+      font-size: 1rem; font-weight: 600;
+      color: var(--text); margin-bottom: 1.5rem; line-height: 1.55;
+    }
+    .sv-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem; margin-bottom: 1.75rem;
+    }
+    .sv-option { position: relative; cursor: pointer; }
+    .sv-option input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .sv-card {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.625rem; text-align: center;
+      padding: 1.25rem 0.875rem;
+      background: var(--dark-4);
+      border: 1.5px solid var(--border);
+      border-radius: 14px; position: relative;
+      transition: border-color 0.18s, background 0.18s, transform 0.15s;
+      user-select: none; height: 100%;
+    }
+    .sv-card:hover {
+      border-color: rgba(196,154,18,0.45);
+      background: rgba(196,154,18,0.04);
+      transform: translateY(-2px);
+    }
+    .sv-option input:checked + .sv-card {
+      border-color: var(--gold);
+      background: rgba(196,154,18,0.09);
+    }
+    .sv-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--gold-dim); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.0625rem; color: var(--gold);
+      transition: background 0.18s;
+    }
+    .sv-option input:checked + .sv-card .sv-icon {
+      background: rgba(196,154,18,0.18); border-color: rgba(196,154,18,0.5);
+    }
+    .sv-name {
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--text); line-height: 1.3;
+    }
+    .sv-check {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.5);
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .sv-check i { font-size: 0.5rem; color: #0A0800; }
+    .sv-option input:checked + .sv-card .sv-check { opacity: 1; transform: scale(1); }
+    .sv-other-wrap { display: none; margin-bottom: 1.25rem; }
+    .sv-other-wrap.visible { display: block; }
+    .sv-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 1.75rem 0;
     }
     /* ==================== FOOTER OVERRIDES (stays dark) ==================== */
     .footer .footer-brand p,
@@ -1280,9 +1341,123 @@
         <p class="s-sub" style="margin-top:1rem">We're expanding our services — tell us what would make your event easier.</p>
       </div>
       <form class="survey-form reveal" id="surveyForm">
+        <p class="sv-question">Tell us what could have been provided to make your event easier and less stressful?</p>
+        <div class="sv-grid">
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="dj-services">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-headphones-alt"></i></div>
+              <span class="sv-name">DJ Services</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="sound-systems">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-volume-up"></i></div>
+              <span class="sv-name">Sound Systems</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="lighting">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-lightbulb"></i></div>
+              <span class="sv-name">Lighting Packages</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="tables-chairs">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-chair"></i></div>
+              <span class="sv-name">Tables &amp; Chairs</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="tents-canopies">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-campground"></i></div>
+              <span class="sv-name">Tents &amp; Canopies</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="bounce-houses">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-child"></i></div>
+              <span class="sv-name">Bounce Houses</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="photo-booths">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-camera"></i></div>
+              <span class="sv-name">Photo Booths</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="dance-floor">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-music"></i></div>
+              <span class="sv-name">Dance Floor Platforms</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="karaoke">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-microphone"></i></div>
+              <span class="sv-name">Karaoke Equipment</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="outdoor-movie">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-film"></i></div>
+              <span class="sv-name">Outdoor Movie Setup</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="beverage-coolers">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-snowflake"></i></div>
+              <span class="sv-name">Large Beverage Coolers</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="outdoor-games">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-gamepad"></i></div>
+              <span class="sv-name">Outdoor Games</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+          <label class="sv-option">
+            <input type="checkbox" name="services" value="other" id="otherCheck">
+            <div class="sv-card">
+              <div class="sv-icon"><i class="fas fa-plus"></i></div>
+              <span class="sv-name">Other</span>
+              <div class="sv-check"><i class="fas fa-check"></i></div>
+            </div>
+          </label>
+        </div>
+        <div class="sv-other-wrap" id="otherWrap">
+          <div class="form-group">
+            <label class="form-label">Please describe</label>
+            <textarea class="form-textarea" name="other" rows="2" placeholder="Tell us what else would have helped make your event better..."></textarea>
+          </div>
+        </div>
+        <hr class="sv-divider">
         <div class="form-group">
-          <label class="form-label">Tell us what you need</label>
-          <textarea class="form-textarea" name="feedback" placeholder="Share any requests, ideas, or services you'd love to see at your event..."></textarea>
+          <label class="form-label">Additional comments</label>
+          <textarea class="form-textarea" name="feedback" placeholder="Any other thoughts, feedback, or suggestions for Cold Ones Event Solutions..."></textarea>
         </div>
         <button class="btn-submit" id="surveySub" type="submit" style="margin-top:1.5rem">
           Submit Feedback &nbsp;<i class="fas fa-paper-plane"></i>
@@ -1525,6 +1700,15 @@
           btn.disabled = false;
           form.reset();
         }, 3500);
+      });
+    }
+
+    // ---- Survey "Other" reveal ----
+    const otherCheck = document.getElementById('otherCheck');
+    const otherWrap  = document.getElementById('otherWrap');
+    if (otherCheck && otherWrap) {
+      otherCheck.addEventListener('change', function () {
+        otherWrap.classList.toggle('visible', this.checked);
       });
     }
 

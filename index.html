@@ -812,10 +812,11 @@
       45%       { transform: translateY(-4px) rotate(0.1deg); }
       80%       { transform: translateY(2px)  rotate(-0.07deg); }
     }
-    /* Service icons — breathe identical to components, translateX(-50%) preserves centering */
+    /* Service icons — decent float matching LogoWords amplitude, each async via inline delay */
     @keyframes float-icons {
-      0%, 100% { transform: translateX(-50%) translateY(0px); }
-      50%       { transform: translateX(-50%) translateY(-2px); }
+      0%, 100% { transform: translateX(-50%) translateY(0px)   rotate(0deg); }
+      38%       { transform: translateX(-50%) translateY(-8px)  rotate(0.3deg); }
+      72%       { transform: translateX(-50%) translateY(5px)   rotate(-0.2deg); }
     }
     .hero-logo-layer:nth-child(1) { animation: float-letters    5.5s ease-in-out infinite; }
     .hero-logo-layer:nth-child(2) { animation: float-words       7s   ease-in-out infinite; animation-delay: -2.2s; }
@@ -824,8 +825,6 @@
     .hero-svc-icon {
       position: absolute; pointer-events: none;
       width: 8.25%; height: auto; will-change: transform;
-      animation: float-icons 10s ease-in-out infinite;
-      animation-delay: -1.5s;
     }
 
     /* ==================== SERVICE CARDS (CONTENT) ==================== */
@@ -1019,13 +1018,17 @@
           loading="eager" decoding="async">
         <!-- Service icons — one per label row in LogoComponents -->
         <img class="hero-svc-icon" src="brand_assets/GoldIcons/MicrophoneIcon.webp"
-          alt="" aria-hidden="true" style="left:16%;top:83%;">
+          alt="" aria-hidden="true"
+          style="left:16%;top:86%;animation:float-icons 6.5s ease-in-out infinite;animation-delay:0s;">
         <img class="hero-svc-icon" src="brand_assets/GoldIcons/SoundPng.webp"
-          alt="" aria-hidden="true" style="left:36%;top:83%;">
+          alt="" aria-hidden="true"
+          style="left:39%;top:86%;animation:float-icons 7.8s ease-in-out infinite;animation-delay:-3.1s;">
         <img class="hero-svc-icon" src="brand_assets/GoldIcons/MediaIcon.webp"
-          alt="" aria-hidden="true" style="left:60%;top:83%;">
+          alt="" aria-hidden="true"
+          style="left:60%;top:86%;animation:float-icons 7.1s ease-in-out infinite;animation-delay:-5.4s;">
         <img class="hero-svc-icon" src="brand_assets/GoldIcons/BriefcaseIcon.webp"
-          alt="" aria-hidden="true" style="left:83%;top:83%;">
+          alt="" aria-hidden="true"
+          style="left:83%;top:86%;animation:float-icons 8.3s ease-in-out infinite;animation-delay:-1.8s;">
       </div>
       <div class="hero-ctas">
         <a href="#contact" class="btn-primary">Check Availability</a>

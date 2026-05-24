@@ -28,6 +28,7 @@
   <link rel="apple-touch-icon" href="brand_assets/apple-touch-icon.png" sizes="180x180">
   <link rel="preload" as="image" href="brand_assets/HeroSection/LogoLetters.webp" type="image/webp">
   <link rel="preload" as="image" href="brand_assets/HeroSection/LogoWords.webp" type="image/webp">
+  <link rel="preload" as="image" href="brand_assets/HeroSection/LogoComponents.webp" type="image/webp">
   <link rel="preload" as="image" href="brand_assets/HeroSection/LogoSlogan.webp" type="image/webp">
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -800,15 +801,22 @@
       38%       { transform: translateY(-9px) rotate(-0.35deg); }
       72%       { transform: translateY(6px)  rotate(0.25deg); }
     }
+    /* Components row — gentle sway */
+    @keyframes float-components {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      42%       { transform: translateY(-7px) rotate(0.2deg); }
+      78%       { transform: translateY(5px)  rotate(-0.15deg); }
+    }
     /* Slogan — subtle drift, slowest cycle */
     @keyframes float-slogan {
       0%, 100% { transform: translateY(0px); }
       45%       { transform: translateY(-6px) rotate(0.15deg); }
       80%       { transform: translateY(4px)  rotate(-0.1deg); }
     }
-    .hero-logo-layer:nth-child(1) { animation: float-letters 5.5s ease-in-out infinite; }
-    .hero-logo-layer:nth-child(2) { animation: float-words   7s   ease-in-out infinite; animation-delay: -2.2s; }
-    .hero-logo-layer:nth-child(3) { animation: float-slogan  9s   ease-in-out infinite; animation-delay: -4.8s; }
+    .hero-logo-layer:nth-child(1) { animation: float-letters    5.5s ease-in-out infinite; }
+    .hero-logo-layer:nth-child(2) { animation: float-words       7s   ease-in-out infinite; animation-delay: -2.2s; }
+    .hero-logo-layer:nth-child(3) { animation: float-components  8s   ease-in-out infinite; animation-delay: -1.5s; }
+    .hero-logo-layer:nth-child(4) { animation: float-slogan      9s   ease-in-out infinite; animation-delay: -4.8s; }
 
     /* ==================== SERVICE CARDS (CONTENT) ==================== */
     .svc-card-icon {
@@ -986,6 +994,11 @@
           fetchpriority="high" loading="eager" decoding="async">
         <img class="hero-logo-layer"
           src="brand_assets/HeroSection/LogoWords.webp"
+          alt="" aria-hidden="true"
+          width="1402" height="1122"
+          loading="eager" decoding="async">
+        <img class="hero-logo-layer"
+          src="brand_assets/HeroSection/LogoComponents.webp"
           alt="" aria-hidden="true"
           width="1402" height="1122"
           loading="eager" decoding="async">

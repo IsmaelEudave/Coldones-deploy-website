@@ -26,15 +26,14 @@
   <link rel="icon" type="image/png" href="brand_assets/favicon-64.png" sizes="64x64">
   <link rel="icon" type="image/png" href="brand_assets/favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="brand_assets/apple-touch-icon.png" sizes="180x180">
+  <meta name="theme-color" content="#09080A">
   <link rel="preload" as="image" href="brand_assets/HeroSection/LogoLetters.webp" type="image/webp">
-  <link rel="preload" as="image" href="brand_assets/HeroSection/LogoWords.webp" type="image/webp">
-  <link rel="preload" as="image" href="brand_assets/HeroSection/LogoComponents.webp" type="image/webp">
-  <link rel="preload" as="image" href="brand_assets/HeroSection/LogoSlogan.webp" type="image/webp">
-  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1003,17 +1002,17 @@
           src="brand_assets/HeroSection/LogoWords.webp"
           alt="" aria-hidden="true"
           width="1402" height="1122"
-          loading="eager" decoding="async">
+          decoding="async">
         <img class="hero-logo-layer"
           src="brand_assets/HeroSection/LogoComponents.webp"
           alt="" aria-hidden="true"
           width="1402" height="1122"
-          loading="eager" decoding="async">
+          decoding="async">
         <img class="hero-logo-layer"
           src="brand_assets/HeroSection/LogoSlogan.webp"
           alt="" aria-hidden="true"
           width="1402" height="1122"
-          loading="eager" decoding="async">
+          decoding="async">
         <!-- Service icons — one per label row in LogoComponents -->
         <img class="hero-svc-icon" src="brand_assets/GoldIcons/MicrophoneIcon.webp"
           alt="" aria-hidden="true"
@@ -1619,14 +1618,23 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "EntertainmentBusiness"],
     "name": "ColdOnes Event Solutions",
     "description": "Veteran-owned open-format DJ service in Oklahoma City. Weddings, Quinceañeras, corporate events, and private parties. Se habla español.",
     "url": "https://www.coldonesevents.com",
     "logo": "https://www.coldonesevents.com/brand_assets/ColdOnesLogo.png",
     "image": "https://www.coldonesevents.com/brand_assets/SolidColdOnes.webp",
     "email": "Cold1c2020@gmail.com",
-    "areaServed": "Oklahoma",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Oklahoma City",
+      "addressRegion": "OK",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Oklahoma City" },
+      { "@type": "State", "name": "Oklahoma" }
+    ],
     "priceRange": "$$",
     "foundingDate": "2017",
     "slogan": "One Company. One Experience. Done Right.",

@@ -166,18 +166,6 @@
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; background: var(--dark);
     }
-    #heroPaths {
-      position: absolute; inset: 0;
-      pointer-events: none; z-index: 0;
-    }
-    #heroPaths svg {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      overflow: visible;
-    }
-    @keyframes pathPulse {
-      0%, 100% { opacity: 0.15; }
-      50%       { opacity: 0.85; }
-    }
     .hero-glow {
       position: absolute; inset: 0; z-index: 0; pointer-events: none;
       background: radial-gradient(ellipse 65% 55% at 50% 50%,
@@ -1002,7 +990,6 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
-    <div id="heroPaths" aria-hidden="true"></div>
     <div class="hero-glow"></div>
 
 <div class="hero-inner">
@@ -1662,79 +1649,6 @@
     "sameAs": []
   }
   </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script>
-    // ---- Animated hero background paths (GSAP) ----
-    (function() {
-      var container = document.getElementById('heroPaths');
-      if (!container || typeof gsap === 'undefined') return;
-
-      var mobile = window.matchMedia('(max-width: 768px)').matches;
-      var count  = mobile ? 18 : 36;
-
-      [1, -1].forEach(function(pos) {
-        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('viewBox', '0 0 696 316');
-        svg.setAttribute('fill', 'none');
-        svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-        svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;overflow:visible';
-
-        // Build all path elements first
-        var paths = [];
-        for (var n = 0; n < count; n++) {
-          var i = Math.round(n * (35 / Math.max(count - 1, 1)));
-          var d = 'M-'+(380-i*5*pos)+' -'+(189+i*6)
-            +'C-'+(380-i*5*pos)+' -'+(189+i*6)
-            +' -'+(312-i*5*pos)+' '+(216-i*6)
-            +' '+(152-i*5*pos)+' '+(343-i*6)
-            +'C'+(616-i*5*pos)+' '+(470-i*6)
-            +' '+(684-i*5*pos)+' '+(875-i*6)
-            +' '+(684-i*5*pos)+' '+(875-i*6);
-          var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-          path.setAttribute('d', d);
-          path.setAttribute('stroke', 'rgba(196,154,18,'+Math.min(0.05+i*0.009,0.32)+')');
-          path.setAttribute('stroke-width', String(0.5+i*0.03));
-          path.setAttribute('fill', 'none');
-          svg.appendChild(path);
-          paths.push({ el: path, i: i, n: n });
-        }
-
-        // Add SVG to DOM once so getTotalLength() can measure real geometry
-        container.appendChild(svg);
-
-        // Now measure and animate each path
-        paths.forEach(function(p) {
-          var len = p.el.getTotalLength() || 1200;
-          var dash = len * 0.3;
-
-          gsap.set(p.el, {
-            strokeDasharray: dash + ' ' + (len - dash),
-            strokeDashoffset: -((p.n / count) * len),
-            opacity: 0.25 + (p.n % 4) * 0.08,
-          });
-
-          // Dash travels along path — GSAP batches all RAF writes into one paint
-          gsap.to(p.el, {
-            strokeDashoffset: '-=' + len,
-            duration: 20 + (p.i % 7) * 3,
-            repeat: -1,
-            ease: 'none',
-            delay: -(p.i * 0.65 + (pos < 0 ? 9 : 0)),
-          });
-
-          // Gentle opacity breathe, never going fully transparent
-          gsap.to(p.el, {
-            opacity: 0.55 + (p.n % 4) * 0.08,
-            duration: 4 + (p.i % 6) * 1.2,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut',
-            delay: -(p.n * 0.7),
-          });
-        });
-      });
-    })();
 
     // ---- Navbar ----
     const navbar = document.getElementById('navbar');

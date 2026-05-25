@@ -301,6 +301,9 @@
       white-space: nowrap;
       animation: marquee 12s linear infinite;
     }
+    @media (max-width: 640px) {
+      .trust-track { animation-duration: 6s; }
+    }
     .trust-item {
       display: flex; align-items: center; gap: 0.625rem;
       color: var(--text-muted); font-size: 0.8rem;

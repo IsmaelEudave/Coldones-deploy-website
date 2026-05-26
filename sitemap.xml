@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.1"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.coldonesevents.com/</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.coldonesevents.com/brand_assets/SolidColdOnes.webp</image:loc>
+      <image:title>ColdOnes Event Solutions — Veteran Owned DJ Oklahoma City</image:title>
+    </image:image>
+  </url>
+</urlset>

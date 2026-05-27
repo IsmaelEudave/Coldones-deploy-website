@@ -158,8 +158,6 @@
       transition: color 0.2s;
     }
     .mob-links a:hover { color: var(--gold-light); }
-    .mob-cta { display: block; margin-top: 2rem; text-align: center; }
-
     /* ==================== HERO ==================== */
     .hero {
       position: relative; min-height: 100vh;
@@ -316,9 +314,6 @@
       display: grid; grid-template-columns: repeat(3,1fr);
       column-gap: 2rem; row-gap: 3.5rem;
     }
-    .svc-card {
-      display: flex; flex-direction: column;
-    }
     .svc-name {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700; font-size: 1.375rem;
@@ -332,53 +327,6 @@
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 5rem; align-items: center;
     }
-    .about-feats { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
-    .about-feat { display: flex; gap: 1rem; align-items: flex-start; }
-    .feat-dot {
-      width: 10px; height: 10px; background: var(--gold);
-      border-radius: 50%; margin-top: 7px; flex-shrink: 0;
-    }
-    .feat-title { font-weight: 600; font-size: 0.9375rem; color: var(--text); margin-bottom: 0.25rem; }
-    .feat-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
-    .about-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px; padding: 3rem;
-      position: relative; overflow: hidden;
-    }
-    .about-card::after {
-      content: ''; position: absolute;
-      top: -50px; right: -50px; width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(196,154,18,0.12) 0%, transparent 70%);
-      border-radius: 50%; pointer-events: none;
-    }
-    .vet-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(196,154,18,0.09);
-      border: 1px solid rgba(196,154,18,0.28);
-      color: var(--gold-light);
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.4rem 0.875rem; border-radius: 4px;
-      margin-bottom: 1.75rem;
-    }
-    .about-quote {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.75rem; font-weight: 700;
-      line-height: 1.3; color: var(--text); margin-bottom: 2rem;
-    }
-    .about-quote span { color: var(--gold); }
-    .about-meta { display: flex; gap: 2rem; }
-    .meta-val {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2rem; font-weight: 800;
-      color: var(--gold); display: block;
-    }
-    .meta-lbl {
-      font-size: 0.72rem; color: var(--text-muted);
-      letter-spacing: 0.08em; text-transform: uppercase;
-    }
-
     .about-img-wrap {
       border-radius: 20px; overflow: hidden;
       aspect-ratio: 900 / 1110;
@@ -582,7 +530,8 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--text-muted); margin-bottom: 0.2rem; display: block;
     }
-    .c-val { color: var(--text); font-size: 0.9375rem; }
+    .c-val { color: var(--text); font-size: 0.9375rem; text-decoration: none; }
+    a.c-val:hover { color: var(--gold); }
     .contact-form {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -681,14 +630,6 @@
       display: grid; grid-template-columns: 1fr 1fr 1fr;
       gap: 3rem; margin-bottom: 3.5rem;
     }
-    .footer-brand img {
-      height: 44px; width: auto;
-      margin-bottom: 1.25rem; display: block;
-    }
-    .footer-brand p {
-      font-size: 0.875rem; color: var(--text-muted);
-      line-height: 1.7; max-width: 260px;
-    }
     .footer-col-title {
       font-size: 0.67rem; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
@@ -744,8 +685,6 @@
       .hero-ctas     { flex-direction: column; align-items: center; }
       .sv-grid       { grid-template-columns: repeat(2, 1fr); }
       .about-grid    { gap: 3rem; }
-      .about-card    { padding: 1.5rem; }
-      .about-meta    { flex-wrap: wrap; gap: 1.25rem; }
       .contact-grid  { gap: 3rem; }
       .faq-layout    { gap: 3rem; }
     }
@@ -810,7 +749,7 @@
       margin-bottom: 1.25rem;
     }
     .svc-card-icon i { font-size: 1.375rem; color: var(--gold); }
-    .svc-card { background: var(--cream); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
+    .svc-card { display: flex; flex-direction: column; background: var(--cream); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
     .svc-card:hover { border-color: rgba(196,154,18,0.4); }
     .svc-desc ul { margin-top: 0.75rem; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; }
     .svc-desc ul li { color: var(--text-muted); font-size: 0.875rem; }
@@ -926,9 +865,7 @@
       border: 1.5px solid var(--border);
       border-radius: 16px; padding: 1.5rem;
     }
-    .sv-divider { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
     /* ==================== FOOTER OVERRIDES (stays dark) ==================== */
-    .footer .footer-brand p,
     .footer .footer-links a,
     .footer .footer-copy,
     .footer .soc-link { color: rgba(242,237,224,0.5); }
@@ -967,8 +904,7 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-glow"></div>
-
-<div class="hero-inner">
+    <div class="hero-inner">
       <div class="hero-logo-stack">
         <img class="hero-logo-layer"
           src="brand_assets/HeroSection/LogoLetters.webp"
@@ -1046,7 +982,6 @@
     </div>
   </div>
 
-  <!-- STATS -->
   <!-- SERVICES / WHAT WE OFFER -->
   <section class="services-sec" id="services">
     <div class="container">
@@ -1327,7 +1262,7 @@
               <div class="c-icon"><i class="fas fa-envelope"></i></div>
               <div>
                 <span class="c-label">Email</span>
-                <span class="c-val">Cold1c2020@gmail.com</span>
+                <a class="c-val" href="mailto:Cold1c2020@gmail.com">Cold1c2020@gmail.com</a>
               </div>
             </div>
             <div class="contact-item">
@@ -1356,32 +1291,32 @@
             <input type="hidden" name="_subject" value="New Quote Request — ColdOnes Events">
             <div class="form-grid">
               <div class="form-group">
-                <label class="form-label">First Name</label>
+                <label class="form-label" for="firstName">First Name</label>
                 <input class="form-input" type="text" name="first-name" id="firstName"
                   placeholder="John" required data-fs-field
                   maxlength="50" autocomplete="given-name" spellcheck="false">
               </div>
               <div class="form-group">
-                <label class="form-label">Last Name</label>
+                <label class="form-label" for="lastName">Last Name</label>
                 <input class="form-input" type="text" name="last-name" id="lastName"
                   placeholder="Smith" required data-fs-field
                   maxlength="50" autocomplete="family-name" spellcheck="false">
               </div>
               <div class="form-group">
-                <label class="form-label">Email</label>
-                <input class="form-input" type="email" name="email"
+                <label class="form-label" for="emailInput">Email</label>
+                <input class="form-input" type="email" name="email" id="emailInput"
                   placeholder="john@example.com" required data-fs-field
                   maxlength="254" autocomplete="email">
               </div>
               <div class="form-group">
-                <label class="form-label">Phone</label>
+                <label class="form-label" for="phoneInput">Phone</label>
                 <input class="form-input" type="tel" name="phone" id="phoneInput"
                   placeholder="(555) 000-0000" data-fs-field
                   inputmode="tel" autocomplete="tel">
               </div>
               <div class="form-group">
-                <label class="form-label">Event Type</label>
-                <select class="form-select" name="event-type" required data-fs-field>
+                <label class="form-label" for="eventType">Event Type</label>
+                <select class="form-select" name="event-type" id="eventType" required data-fs-field>
                   <option value="" disabled selected>Select event type</option>
                   <option>Wedding</option>
                   <option>Quinceañera</option>
@@ -1395,11 +1330,11 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">Event Date</label>
+                <label class="form-label" for="eventDate">Event Date</label>
                 <input class="form-input" type="date" name="event-date" id="eventDate" required data-fs-field autocomplete="off">
               </div>
               <div class="form-group full">
-                <label class="form-label">Tell us about your event</label>
+                <label class="form-label" for="msgTextarea">Tell us about your event</label>
                 <textarea class="form-textarea" name="message" id="msgTextarea"
                   placeholder="Venue, guest count, vision, special requests..."
                   maxlength="1000" data-fs-field></textarea>
@@ -1552,7 +1487,7 @@
               </div>
               <div class="sv-other-wrap" id="otherWrap">
                 <div class="form-group" style="margin-top:0.875rem">
-                  <label class="form-label">Please describe</label>
+                  <label class="form-label" for="otherTextarea">Please describe</label>
                   <textarea class="form-textarea" name="other" id="otherTextarea" rows="2" placeholder="Tell us what else would have helped..." maxlength="300" data-fs-field></textarea>
                   <span class="char-counter" data-for="otherTextarea">0 / 300</span>
                 </div>
@@ -1564,7 +1499,7 @@
         <!-- Comments -->
         <div class="sv-comment">
           <div class="form-group">
-            <label class="form-label">Additional comments</label>
+            <label class="form-label" for="feedbackTextarea">Additional comments</label>
             <textarea class="form-textarea" name="feedback" id="feedbackTextarea" placeholder="Any other thoughts, feedback, or suggestions for ColdOnes Event Solutions..." maxlength="1000" data-fs-field></textarea>
             <span class="char-counter" data-for="feedbackTextarea">0 / 1000</span>
           </div>

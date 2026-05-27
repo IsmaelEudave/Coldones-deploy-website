@@ -175,11 +175,6 @@
       position: relative; z-index: 1;
       text-align: center; padding: 0 1.5rem; max-width: 920px;
     }
-    .hero-logo {
-      width: 110px; height: auto;
-      display: block; margin: 0 auto 1.5rem;
-      filter: drop-shadow(0 0 18px rgba(196,154,18,0.55));
-    }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: rgba(196,154,18,0.09);
@@ -311,37 +306,6 @@
       to   { transform: translate3d(-50%, 0, 0); }
     }
 
-    /* ==================== STATS ==================== */
-    .stats-section {
-      background: var(--dark-2);
-      padding: 5rem 2.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 1px; background: var(--border);
-      border-radius: 14px; overflow: hidden;
-    }
-    .stat-item {
-      background: var(--dark-3); padding: 2.5rem;
-      text-align: center;
-    }
-    .stat-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: 3.5rem;
-      color: var(--gold); line-height: 1; display: inline;
-    }
-    .stat-unit {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 2rem; color: var(--gold-light);
-    }
-    .stat-label {
-      display: block; margin-top: 0.5rem;
-      font-size: 0.75rem; font-weight: 500;
-      color: var(--text-muted); letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
     /* ==================== SERVICES ==================== */
     .services-sec { background: var(--dark); }
     .svc-header {
@@ -355,31 +319,6 @@
     .svc-card {
       display: flex; flex-direction: column;
     }
-    .svc-icon-wrap {
-      background: var(--dark-2);
-      border: 1px solid var(--border);
-      border-radius: 1.25rem;
-      height: 220px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
-      transition: border-color 0.3s;
-      overflow: hidden;
-    }
-    .svc-card:hover .svc-icon-wrap { border-color: rgba(196,154,18,0.4); }
-    @keyframes iconFloat {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-12px); }
-    }
-    .svc-icon-wrap img {
-      width: 260px; height: 260px; object-fit: contain;
-      filter: drop-shadow(0 6px 14px rgba(196,154,18,0.3));
-      animation: iconFloat 3.8s ease-in-out infinite;
-    }
-    .svc-grid .svc-card:nth-child(2) .svc-icon-wrap img { animation-delay: -1.4s; }
-    .svc-grid .svc-card:nth-child(3) .svc-icon-wrap img { animation-delay: -0.7s; }
-    .svc-grid .svc-card:nth-child(4) .svc-icon-wrap img { animation-delay: -2.1s; }
-    .svc-icon-wrap i { font-size: 4rem; color: var(--gold); filter: drop-shadow(0 6px 18px rgba(196,154,18,0.45)); }
     .svc-name {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700; font-size: 1.375rem;
@@ -740,7 +679,6 @@
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
       .process-steps { grid-template-columns: repeat(2,1fr); }
-      .stats-grid    { grid-template-columns: repeat(2,1fr); }
       .footer-top    { grid-template-columns: 1fr 1fr; }
       .about-grid    { grid-template-columns: 1fr; }
       .contact-grid  { grid-template-columns: 1fr; }
@@ -749,7 +687,6 @@
     }
     @media (max-width: 768px) {
       section { padding: 5rem 1.25rem; }
-      .stats-section { padding: 4rem 1.25rem; }
       .nav { padding: 0 1.25rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -762,7 +699,6 @@
       .svc-grid      { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .reviews-grid  { grid-template-columns: 1fr; }
-      .stats-grid    { grid-template-columns: 1fr; }
       .footer-top    { grid-template-columns: 1fr; }
       .form-grid     { grid-template-columns: 1fr; }
       .hero-ctas     { flex-direction: column; align-items: center; }
@@ -1334,7 +1270,7 @@
   <!-- CTA STRIP -->
   <div class="cta-strip">
     <div class="container">
-      <div class="cta-strip-title">Premium Experience. Flexible Pricing.</div>
+      <h2 class="cta-strip-title">Premium Experience. Flexible Pricing.</h2>
       <p class="cta-strip-sub">Customizable packages designed to fit your event and your budget — without compromising quality.</p>
       <a href="#contact" class="btn-primary">Request Pricing</a>
     </div>
@@ -1616,7 +1552,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <div class="footer-copy">© 2025 ColdOnes Event Solutions. All rights reserved. Veteran Owned &amp; Operated.</div>
+        <div class="footer-copy">© 2026 ColdOnes Event Solutions. All rights reserved. Veteran Owned &amp; Operated.</div>
         <div class="footer-socials">
           <a href="#" class="soc-link"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="soc-link"><i class="fab fa-instagram"></i></a>
@@ -1704,29 +1640,6 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // ---- Stat counters ----
-    function animateCount(el, target, dur) {
-      dur = dur || 1800;
-      let start = null;
-      const step = (ts) => {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / dur, 1);
-        el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target);
-        if (p < 1) requestAnimationFrame(step);
-        else el.textContent = target;
-      };
-      requestAnimationFrame(step);
-    }
-    const statObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          animateCount(e.target, parseInt(e.target.dataset.target, 10));
-          statObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
-
     // ---- FAQ ----
     document.querySelectorAll('.faq-item').forEach(item => {
       item.querySelector('.faq-q').addEventListener('click', () => {
@@ -1812,7 +1725,9 @@
     // ---- Smooth scroll ----
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
-        const target = document.querySelector(a.getAttribute('href'));
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
           window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });

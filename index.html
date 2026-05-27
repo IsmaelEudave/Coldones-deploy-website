@@ -45,10 +45,10 @@
       --gold-dim:   rgba(196,154,18,0.09);
       --gold-glow:  rgba(196,154,18,0.15);
       --black:      #09080A;
-      --dark:       #FFFFFF;
-      --dark-2:     #F7F3EC;
-      --dark-3:     #FFFFFF;
-      --dark-4:     #F2EDE4;
+      --white:       #FFFFFF;
+      --cream:     #F7F3EC;
+      --surface:     #FFFFFF;
+      --cream-deep:     #F2EDE4;
       --border:     rgba(196,154,18,0.25);
       --text:       #1A1510;
       --text-muted: #6B6050;
@@ -58,7 +58,7 @@
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Barlow', sans-serif;
-      background: var(--dark);
+      background: var(--white);
       color: var(--text);
       overflow-x: hidden;
       max-width: 100%;
@@ -141,7 +141,7 @@
     .mobile-overlay.open { opacity: 1; pointer-events: all; }
     .mobile-menu {
       position: fixed; top: 0; right: 0; bottom: 0; width: 280px;
-      background: var(--dark-2); border-left: 1px solid var(--border);
+      background: var(--cream); border-left: 1px solid var(--border);
       z-index: 99; padding: 5rem 2rem 2rem;
       transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
@@ -164,7 +164,7 @@
     .hero {
       position: relative; min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      overflow: hidden; background: var(--dark);
+      overflow: hidden; background: var(--white);
     }
     .hero-glow {
       position: absolute; inset: 0; z-index: 0; pointer-events: none;
@@ -274,7 +274,7 @@
 
     /* ==================== TRUST BAR ==================== */
     .trust-bar {
-      background: var(--dark-2);
+      background: var(--cream);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 1.25rem 0; overflow: hidden;
@@ -307,7 +307,7 @@
     }
 
     /* ==================== SERVICES ==================== */
-    .services-sec { background: var(--dark); }
+    .services-sec { background: var(--white); }
     .svc-header {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 3rem; margin-bottom: 4rem; align-items: end;
@@ -327,7 +327,7 @@
     .svc-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
 
     /* ==================== ABOUT ==================== */
-    .about-sec { background: var(--dark-2); padding-bottom: 5rem; }
+    .about-sec { background: var(--cream); padding-bottom: 5rem; }
     .about-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 5rem; align-items: center;
@@ -341,7 +341,7 @@
     .feat-title { font-weight: 600; font-size: 0.9375rem; color: var(--text); margin-bottom: 0.25rem; }
     .feat-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
     .about-card {
-      background: var(--dark-3);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 20px; padding: 3rem;
       position: relative; overflow: hidden;
@@ -430,7 +430,7 @@
     }
 
     /* ==================== PROCESS ==================== */
-    .process-sec { background: var(--dark); }
+    .process-sec { background: var(--white); }
     .process-steps {
       display: grid; grid-template-columns: repeat(4,1fr);
       gap: 1px; background: var(--border);
@@ -438,7 +438,7 @@
       margin-top: 4rem;
     }
     .proc-step {
-      background: var(--dark-2); padding: 2.5rem 2rem;
+      background: var(--cream); padding: 2.5rem 2rem;
       position: relative;
     }
     .proc-num {
@@ -463,13 +463,13 @@
     .proc-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
 
     /* ==================== REVIEWS ==================== */
-    .reviews-sec { background: var(--dark-2); }
+    .reviews-sec { background: var(--cream); }
     .reviews-grid {
       display: grid; grid-template-columns: repeat(3,1fr);
       gap: 1.5rem; margin-top: 4rem;
     }
     .rev-card {
-      background: var(--dark-3);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px; padding: 2rem;
       transition: border-color 0.3s, transform 0.3s;
@@ -498,7 +498,7 @@
     .rev-event { font-size: 0.775rem; color: var(--text-dim); }
 
     /* ==================== FAQ ==================== */
-    .faq-sec { background: var(--dark); }
+    .faq-sec { background: var(--white); }
     .faq-layout {
       display: grid; grid-template-columns: 1fr 2fr;
       gap: 5rem; align-items: start;
@@ -508,7 +508,7 @@
       gap: 1px; background: var(--border);
       border-radius: 12px; overflow: hidden;
     }
-    .faq-item { background: var(--dark-2); }
+    .faq-item { background: var(--cream); }
     .faq-q {
       width: 100%; background: none; border: none;
       color: var(--text); font-family: 'Barlow', sans-serif;
@@ -541,7 +541,7 @@
 
     /* ==================== CTA STRIP ==================== */
     .cta-strip {
-      background: var(--dark-3);
+      background: var(--surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 6rem 2.5rem; text-align: center;
@@ -563,7 +563,7 @@
     }
 
     /* ==================== CONTACT ==================== */
-    .contact-sec { background: var(--dark-2); }
+    .contact-sec { background: var(--cream); }
     .contact-grid {
       display: grid; grid-template-columns: 1fr 1.6fr;
       gap: 5rem; align-items: start;
@@ -584,7 +584,7 @@
     }
     .c-val { color: var(--text); font-size: 0.9375rem; }
     .contact-form {
-      background: var(--dark-3);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 20px; padding: 2.5rem;
     }
@@ -600,7 +600,7 @@
       color: var(--text-muted);
     }
     .form-input, .form-select, .form-textarea {
-      background: var(--dark-4);
+      background: var(--cream-deep);
       border: 1px solid rgba(26,21,16,0.12);
       border-radius: 8px; color: var(--text);
       font-family: 'Barlow', sans-serif; font-size: 0.9375rem;
@@ -612,7 +612,7 @@
     }
     .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
     .form-select { cursor: pointer; }
-    .form-select option { background: var(--dark-4); }
+    .form-select option { background: var(--cream-deep); }
     .form-textarea { resize: vertical; min-height: 160px; }
     .form-input[type="date"] { -webkit-appearance: none; appearance: none; padding: 0.75rem 1rem; min-height: 3rem; line-height: 1.6; }
     .form-input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.6; }
@@ -770,7 +770,7 @@
       margin-bottom: 1.25rem;
     }
     .svc-card-icon i { font-size: 1.375rem; color: var(--gold); }
-    .svc-card { background: var(--dark-2); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
+    .svc-card { background: var(--cream); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
     .svc-card:hover { border-color: rgba(196,154,18,0.4); }
     .svc-desc ul { margin-top: 0.75rem; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; }
     .svc-desc ul li { color: var(--text-muted); font-size: 0.875rem; }
@@ -781,14 +781,14 @@
     .svc-gallery-header { text-align: center; max-width: 600px; margin: 0 auto 2.5rem; }
 
     /* ==================== SURVEY SECTION ==================== */
-    .survey-sec { background: var(--dark-2); }
+    .survey-sec { background: var(--cream); }
     .survey-form {
       max-width: 760px; margin: 3.5rem auto 0;
       display: flex; flex-direction: column; gap: 1.25rem;
     }
     /* Expandable picker trigger */
     .sv-picker {
-      background: var(--dark-3);
+      background: var(--surface);
       border: 1.5px solid var(--border);
       border-radius: 16px; overflow: hidden;
       transition: border-color 0.2s;
@@ -844,7 +844,7 @@
       display: flex; flex-direction: column; align-items: center;
       gap: 0.5rem; text-align: center;
       padding: 1rem 0.625rem;
-      background: var(--dark-4);
+      background: var(--cream-deep);
       border: 1.5px solid var(--border);
       border-radius: 12px; position: relative;
       transition: border-color 0.18s, background 0.18s, transform 0.15s;
@@ -882,7 +882,7 @@
     .sv-other-wrap.visible { display: block; }
     /* Comment box */
     .sv-comment {
-      background: var(--dark-3);
+      background: var(--surface);
       border: 1.5px solid var(--border);
       border-radius: 16px; padding: 1.5rem;
     }
@@ -903,7 +903,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
       <li class="nav-cursor" id="navCursor" aria-hidden="true"></li>
     </ul>
@@ -918,7 +918,7 @@
     <ul class="mob-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -1119,8 +1119,6 @@
               loading="lazy" decoding="async">
           </div>
         </div>
-      </div>
-
       </div>
     </div>
 

@@ -650,6 +650,14 @@
       font-size: 0.875rem;
       margin-bottom: 1rem;
     }
+    .char-counter {
+      display: block; text-align: right;
+      font-size: 0.72rem; color: var(--text-dim);
+      margin-top: 0.25rem; letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .char-counter.near-limit { color: var(--gold); }
+    .char-counter.at-limit    { color: #c83232; }
 
     /* ==================== FOOTER ==================== */
     .footer {
@@ -1337,19 +1345,27 @@
             <div class="form-grid">
               <div class="form-group">
                 <label class="form-label">First Name</label>
-                <input class="form-input" type="text" name="first-name" placeholder="John" required data-fs-field>
+                <input class="form-input" type="text" name="first-name" id="firstName"
+                  placeholder="John" required data-fs-field
+                  maxlength="50" autocomplete="given-name" spellcheck="false">
               </div>
               <div class="form-group">
                 <label class="form-label">Last Name</label>
-                <input class="form-input" type="text" name="last-name" placeholder="Smith" required data-fs-field>
+                <input class="form-input" type="text" name="last-name" id="lastName"
+                  placeholder="Smith" required data-fs-field
+                  maxlength="50" autocomplete="family-name" spellcheck="false">
               </div>
               <div class="form-group">
                 <label class="form-label">Email</label>
-                <input class="form-input" type="email" name="email" placeholder="john@example.com" required data-fs-field>
+                <input class="form-input" type="email" name="email"
+                  placeholder="john@example.com" required data-fs-field
+                  maxlength="254" autocomplete="email">
               </div>
               <div class="form-group">
                 <label class="form-label">Phone</label>
-                <input class="form-input" type="tel" name="phone" id="phoneInput" placeholder="(555) 000-0000" data-fs-field>
+                <input class="form-input" type="tel" name="phone" id="phoneInput"
+                  placeholder="(555) 000-0000" data-fs-field
+                  inputmode="tel" autocomplete="tel">
               </div>
               <div class="form-group">
                 <label class="form-label">Event Type</label>
@@ -1368,11 +1384,14 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Event Date</label>
-                <input class="form-input" type="date" name="event-date" required data-fs-field>
+                <input class="form-input" type="date" name="event-date" id="eventDate" required data-fs-field autocomplete="off">
               </div>
               <div class="form-group full">
                 <label class="form-label">Tell us about your event</label>
-                <textarea class="form-textarea" name="message" placeholder="Venue, guest count, vision, special requests..." data-fs-field></textarea>
+                <textarea class="form-textarea" name="message" id="msgTextarea"
+                  placeholder="Venue, guest count, vision, special requests..."
+                  maxlength="1000" data-fs-field></textarea>
+                <span class="char-counter" data-for="msgTextarea">0 / 1000</span>
               </div>
             </div>
             <button class="btn-submit" id="submitBtn" type="submit" data-fs-submit-btn>
@@ -1522,7 +1541,8 @@
               <div class="sv-other-wrap" id="otherWrap">
                 <div class="form-group" style="margin-top:0.875rem">
                   <label class="form-label">Please describe</label>
-                  <textarea class="form-textarea" name="other" rows="2" placeholder="Tell us what else would have helped..." data-fs-field></textarea>
+                  <textarea class="form-textarea" name="other" id="otherTextarea" rows="2" placeholder="Tell us what else would have helped..." maxlength="300" data-fs-field></textarea>
+                  <span class="char-counter" data-for="otherTextarea">0 / 300</span>
                 </div>
               </div>
             </div>
@@ -1533,7 +1553,8 @@
         <div class="sv-comment">
           <div class="form-group">
             <label class="form-label">Additional comments</label>
-            <textarea class="form-textarea" name="feedback" placeholder="Any other thoughts, feedback, or suggestions for ColdOnes Event Solutions..." data-fs-field></textarea>
+            <textarea class="form-textarea" name="feedback" id="feedbackTextarea" placeholder="Any other thoughts, feedback, or suggestions for ColdOnes Event Solutions..." maxlength="1000" data-fs-field></textarea>
+            <span class="char-counter" data-for="feedbackTextarea">0 / 1000</span>
           </div>
         </div>
 
@@ -1718,6 +1739,53 @@
           otherWrap.classList.toggle('visible', this.checked);
         });
       }
+    })();
+
+    // ---- Name fields: letters/spaces/hyphens/apostrophes only ----
+    (function () {
+      ['firstName', 'lastName'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('input', function () {
+          var pos = this.selectionStart;
+          var cleaned = this.value.replace(/[^a-zA-ZÀ-ÿ'\- ]/g, '');
+          if (cleaned !== this.value) {
+            this.value = cleaned;
+            this.setSelectionRange(pos - 1, pos - 1);
+          }
+        });
+        el.addEventListener('blur', function () {
+          this.value = this.value
+            .trim()
+            .replace(/\s+/g, ' ')
+            .replace(/(^|\s|-)([a-zA-ZÀ-ÿ])/g, function (m) { return m.toUpperCase(); });
+        });
+      });
+    })();
+
+    // ---- Event date: min = today ----
+    (function () {
+      var dateEl = document.getElementById('eventDate');
+      if (!dateEl) return;
+      var today = new Date().toISOString().split('T')[0];
+      dateEl.setAttribute('min', today);
+    })();
+
+    // ---- Character counters ----
+    (function () {
+      document.querySelectorAll('.char-counter[data-for]').forEach(function (counter) {
+        var textarea = document.getElementById(counter.dataset.for);
+        if (!textarea) return;
+        var max = parseInt(textarea.getAttribute('maxlength'), 10);
+        function update() {
+          var len = textarea.value.length;
+          counter.textContent = len + ' / ' + max;
+          counter.classList.toggle('near-limit', len >= max * 0.85 && len < max);
+          counter.classList.toggle('at-limit', len >= max);
+        }
+        textarea.addEventListener('input', update);
+        update();
+      });
     })();
 
     // ---- Phone formatter ----

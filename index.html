@@ -1392,7 +1392,13 @@
         <h2 class="s-title">Help Us Improve Your<br><span class="gold">Event Experience</span></h2>
         <p class="s-sub" style="margin-top:1rem">We're expanding our services — tell us what would make your event easier.</p>
       </div>
+      <div data-fs-success class="form-success-msg" style="display:none">
+        <i class="fas fa-check-circle"></i>
+        <strong>Thanks for the feedback!</strong> We read every response and use it to improve.
+      </div>
+      <div data-fs-error class="form-error-msg"></div>
       <form class="survey-form reveal" id="surveyForm">
+        <input type="hidden" name="_subject" value="New Feedback Submission — ColdOnes Events">
 
         <!-- Expandable service picker -->
         <div class="sv-picker" id="svPicker">
@@ -1516,7 +1522,7 @@
               <div class="sv-other-wrap" id="otherWrap">
                 <div class="form-group" style="margin-top:0.875rem">
                   <label class="form-label">Please describe</label>
-                  <textarea class="form-textarea" name="other" rows="2" placeholder="Tell us what else would have helped..."></textarea>
+                  <textarea class="form-textarea" name="other" rows="2" placeholder="Tell us what else would have helped..." data-fs-field></textarea>
                 </div>
               </div>
             </div>
@@ -1527,11 +1533,11 @@
         <div class="sv-comment">
           <div class="form-group">
             <label class="form-label">Additional comments</label>
-            <textarea class="form-textarea" name="feedback" placeholder="Any other thoughts, feedback, or suggestions for ColdOnes Event Solutions..."></textarea>
+            <textarea class="form-textarea" name="feedback" placeholder="Any other thoughts, feedback, or suggestions for ColdOnes Event Solutions..." data-fs-field></textarea>
           </div>
         </div>
 
-        <button class="btn-submit" id="surveySub" type="submit">
+        <button class="btn-submit" id="surveySub" type="submit" data-fs-submit-btn>
           Submit Feedback &nbsp;<i class="fas fa-paper-plane"></i>
         </button>
       </form>
@@ -1714,22 +1720,6 @@
       }
     })();
 
-    // ---- Survey Form ----
-    const surveyForm = document.getElementById('surveyForm');
-    if (surveyForm) {
-      surveyForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('surveySub');
-        btn.innerHTML = '<i class="fas fa-check"></i>&nbsp; Submitted — Thank you!';
-        btn.disabled = true;
-        setTimeout(() => {
-          btn.innerHTML = 'Submit Feedback &nbsp;<i class="fas fa-paper-plane"></i>';
-          btn.disabled = false;
-          surveyForm.reset();
-        }, 3500);
-      });
-    }
-
     // ---- Smooth scroll ----
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
@@ -1799,7 +1789,8 @@
 
   <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#quoteForm', formId: 'xdajypkb' });
+    formspree('initForm', { formElement: '#quoteForm',  formId: 'xdajypkb' });
+    formspree('initForm', { formElement: '#surveyForm', formId: 'xbdbqpdz' });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>

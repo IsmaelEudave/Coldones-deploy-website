@@ -1751,6 +1751,17 @@
           otherWrap.classList.toggle('visible', this.checked);
         });
       }
+
+      var surveyForm = document.getElementById('surveyForm');
+      if (surveyForm) {
+        surveyForm.addEventListener('reset', function () {
+          badge.textContent = '';
+          badge.classList.remove('visible');
+          if (otherWrap) otherWrap.classList.remove('visible');
+          picker.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        });
+      }
     })();
 
     // ---- Name fields: letters/spaces/hyphens/apostrophes only ----

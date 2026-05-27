@@ -658,6 +658,18 @@
     }
     .char-counter.near-limit { color: var(--gold); }
     .char-counter.at-limit    { color: #c83232; }
+    .form-textarea.at-limit {
+      border-color: rgba(200,50,50,0.5);
+      box-shadow: 0 0 0 3px rgba(200,50,50,0.1);
+    }
+    @keyframes shake-input {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-4px); }
+      40%      { transform: translateX(4px); }
+      60%      { transform: translateX(-3px); }
+      80%      { transform: translateX(3px); }
+    }
+    .form-textarea.shake { animation: shake-input 0.3s ease; }
 
     /* ==================== FOOTER ==================== */
     .footer {
@@ -1777,11 +1789,23 @@
         var textarea = document.getElementById(counter.dataset.for);
         if (!textarea) return;
         var max = parseInt(textarea.getAttribute('maxlength'), 10);
+        var wasAtLimit = false;
         function update() {
           var len = textarea.value.length;
+          var atLimit = len >= max;
           counter.textContent = len + ' / ' + max;
-          counter.classList.toggle('near-limit', len >= max * 0.85 && len < max);
-          counter.classList.toggle('at-limit', len >= max);
+          counter.classList.toggle('near-limit', len >= max * 0.85 && !atLimit);
+          counter.classList.toggle('at-limit', atLimit);
+          textarea.classList.toggle('at-limit', atLimit);
+          if (atLimit && !wasAtLimit) {
+            textarea.classList.remove('shake');
+            void textarea.offsetWidth;
+            textarea.classList.add('shake');
+            textarea.addEventListener('animationend', function () {
+              textarea.classList.remove('shake');
+            }, { once: true });
+          }
+          wasAtLimit = atLimit;
         }
         textarea.addEventListener('input', update);
         update();

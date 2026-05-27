@@ -1349,7 +1349,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Phone</label>
-                <input class="form-input" type="tel" name="phone" placeholder="(555) 000-0000" data-fs-field>
+                <input class="form-input" type="tel" name="phone" id="phoneInput" placeholder="(555) 000-0000" data-fs-field>
               </div>
               <div class="form-group">
                 <label class="form-label">Event Type</label>
@@ -1718,6 +1718,20 @@
           otherWrap.classList.toggle('visible', this.checked);
         });
       }
+    })();
+
+    // ---- Phone formatter ----
+    (function () {
+      const phone = document.getElementById('phoneInput');
+      if (!phone) return;
+      phone.addEventListener('input', function () {
+        const digits = this.value.replace(/\D/g, '').slice(0, 10);
+        const len = digits.length;
+        if (len === 0)      this.value = '';
+        else if (len <= 3)  this.value = '(' + digits;
+        else if (len <= 6)  this.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+        else                this.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+      });
     })();
 
     // ---- Smooth scroll ----

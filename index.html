@@ -630,6 +630,26 @@
       box-shadow: 0 8px 32px rgba(196,154,18,0.35);
     }
     .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+    .form-success-msg {
+      background: rgba(196,154,18,0.1);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      color: var(--text);
+      font-weight: 500;
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-success-msg i { color: var(--gold); font-size: 1.5rem; flex-shrink: 0; }
+    .form-error-msg:not(:empty) {
+      background: rgba(200,50,50,0.08);
+      border: 1px solid rgba(200,50,50,0.35);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      color: #c83232;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
 
     /* ==================== FOOTER ==================== */
     .footer {
@@ -1307,27 +1327,33 @@
           </div>
         </div>
         <div class="contact-form reveal">
+          <div data-fs-success class="form-success-msg" style="display:none">
+            <i class="fas fa-check-circle"></i>
+            <strong>Request received!</strong> We'll be in touch within 24 hours.
+          </div>
+          <div data-fs-error class="form-error-msg"></div>
           <form id="quoteForm">
+            <input type="hidden" name="_subject" value="New Quote Request — ColdOnes Events">
             <div class="form-grid">
               <div class="form-group">
                 <label class="form-label">First Name</label>
-                <input class="form-input" type="text" placeholder="John" required>
+                <input class="form-input" type="text" name="first-name" placeholder="John" required data-fs-field>
               </div>
               <div class="form-group">
                 <label class="form-label">Last Name</label>
-                <input class="form-input" type="text" placeholder="Smith" required>
+                <input class="form-input" type="text" name="last-name" placeholder="Smith" required data-fs-field>
               </div>
               <div class="form-group">
                 <label class="form-label">Email</label>
-                <input class="form-input" type="email" placeholder="john@example.com" required>
+                <input class="form-input" type="email" name="email" placeholder="john@example.com" required data-fs-field>
               </div>
               <div class="form-group">
                 <label class="form-label">Phone</label>
-                <input class="form-input" type="tel" placeholder="(555) 000-0000">
+                <input class="form-input" type="tel" name="phone" placeholder="(555) 000-0000" data-fs-field>
               </div>
               <div class="form-group">
                 <label class="form-label">Event Type</label>
-                <select class="form-select" required>
+                <select class="form-select" name="event-type" required data-fs-field>
                   <option value="" disabled selected>Select event type</option>
                   <option>Wedding</option>
                   <option>Quinceañera</option>
@@ -1342,14 +1368,14 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Event Date</label>
-                <input class="form-input" type="date" required>
+                <input class="form-input" type="date" name="event-date" required data-fs-field>
               </div>
               <div class="form-group full">
                 <label class="form-label">Tell us about your event</label>
-                <textarea class="form-textarea" placeholder="Venue, guest count, vision, special requests..."></textarea>
+                <textarea class="form-textarea" name="message" placeholder="Venue, guest count, vision, special requests..." data-fs-field></textarea>
               </div>
             </div>
-            <button class="btn-submit" id="submitBtn" type="submit">
+            <button class="btn-submit" id="submitBtn" type="submit" data-fs-submit-btn>
               Check Availability &nbsp;<i class="fas fa-paper-plane"></i>
             </button>
           </form>
@@ -1653,22 +1679,6 @@
       });
     });
 
-    // ---- Quote Form ----
-    const form = document.getElementById('quoteForm');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.innerHTML = '<i class="fas fa-check"></i>&nbsp; Request Sent!';
-        btn.disabled = true;
-        setTimeout(() => {
-          btn.innerHTML = 'Check Availability &nbsp;<i class="fas fa-paper-plane"></i>';
-          btn.disabled = false;
-          form.reset();
-        }, 3500);
-      });
-    }
-
     // ---- Survey picker: expand/collapse + badge + Other reveal ----
     (function () {
       var picker  = document.getElementById('svPicker');
@@ -1786,5 +1796,11 @@
       });
     })();
   </script>
+
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#quoteForm', formId: 'xdajypkb' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>

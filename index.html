@@ -84,7 +84,7 @@
       display: flex; align-items: center; gap: 0.25rem;
       list-style: none; position: relative;
     }
-    .nav-links > li:not(.nav-cursor) {
+    .nav-links > li {
       position: relative; z-index: 1;
       padding: 0.45rem 1rem;
     }
@@ -95,21 +95,6 @@
       transition: color 0.2s;
     }
     .nav-links li:hover a { color: var(--text); }
-    .nav-cursor {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      height: 34px; border-radius: 100px;
-      background: var(--gold);
-      pointer-events: none; z-index: 0; opacity: 0;
-      transition: left 0.22s cubic-bezier(0.4,0,0.2,1),
-                  width 0.22s cubic-bezier(0.4,0,0.2,1),
-                  opacity 0.18s ease;
-    }
-    .nav-logo-center {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      display: flex; align-items: center; text-decoration: none;
-      z-index: 1;
-    }
-    .nav-logo-center img { height: 70px; width: auto; }
     .btn-nav {
       background: var(--gold); color: #0A0800;
       font-weight: 700; font-size: 0.8rem;
@@ -172,30 +157,6 @@
     .hero-inner {
       position: relative; z-index: 1;
       text-align: center; padding: 0 1.5rem; max-width: 920px;
-    }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(196,154,18,0.09);
-      border: 1px solid rgba(196,154,18,0.28);
-      color: var(--gold-light);
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 0.4rem 1rem; border-radius: 100px;
-      margin-bottom: 2rem;
-    }
-    .hero-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: clamp(3.75rem, 10vw, 8rem);
-      line-height: 0.9; letter-spacing: -0.01em;
-      color: var(--text); margin-bottom: 1.5rem;
-    }
-    .hero-title em {
-      font-style: italic; font-weight: 700; color: var(--gold);
-    }
-    .hero-sub {
-      font-size: clamp(1rem, 2.2vw, 1.175rem);
-      font-weight: 300; color: var(--text-muted);
-      max-width: 520px; margin: 0 auto 2.75rem; line-height: 1.75;
     }
     .hero-ctas {
       display: flex; gap: 1rem;
@@ -306,10 +267,6 @@
 
     /* ==================== SERVICES ==================== */
     .services-sec { background: var(--white); }
-    .svc-header {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem; margin-bottom: 4rem; align-items: end;
-    }
     .svc-grid {
       display: grid; grid-template-columns: repeat(3,1fr);
       column-gap: 2rem; row-gap: 3.5rem;
@@ -664,7 +621,6 @@
       .about-grid    { grid-template-columns: 1fr; }
       .contact-grid  { grid-template-columns: 1fr; }
       .faq-layout    { grid-template-columns: 1fr; }
-      .svc-header    { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       section { padding: 5rem 1.25rem; }
@@ -882,7 +838,6 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li class="nav-cursor" id="navCursor" aria-hidden="true"></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>

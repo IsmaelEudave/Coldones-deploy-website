@@ -41,9 +41,7 @@
     :root {
       --gold:       #C49A12;
       --gold-light: #D4AE35;
-      --gold-bright:#E8CC60;
       --gold-dim:   rgba(196,154,18,0.09);
-      --gold-glow:  rgba(196,154,18,0.15);
       --black:      #09080A;
       --white:       #FFFFFF;
       --cream:     #F7F3EC;
@@ -867,14 +865,14 @@
 <body>
 
   <!-- NAV -->
-  <nav class="nav" id="navbar">
+  <nav class="nav" id="navbar" aria-label="Main navigation">
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
     <a href="#contact" class="btn-nav">Book Now</a>
@@ -1626,12 +1624,14 @@
     const mobileOverlay = document.getElementById('mobileOverlay');
     const openMenu = () => {
       hamburger.classList.add('active');
+      hamburger.setAttribute('aria-expanded', 'true');
       mobileMenu.classList.add('open');
       mobileOverlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     };
     const closeMenu = () => {
       hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
       mobileMenu.classList.remove('open');
       mobileOverlay.classList.remove('open');
       document.body.style.overflow = '';

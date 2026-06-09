@@ -460,13 +460,20 @@
     @media (max-width: 767px)  { .rev-col--2 { display: none; } .rev-marquee { max-height: 560px; } }
 
     @media (prefers-reduced-motion: reduce) {
-      .rev-track { animation: none; }
+      /* No auto-scroll: lay the reviews out as a tidy static grid instead. */
       .rev-marquee {
-        max-height: none; overflow: visible; flex-wrap: wrap;
+        max-height: none; overflow: visible;
         -webkit-mask: none; mask: none;
       }
-      .rev-track [data-clone] { display: none; }
       .rev-col--2, .rev-col--3 { display: none; }
+      .rev-col--1 { width: 100%; max-width: 780px; }
+      .rev-track {
+        animation: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+      }
+      .rev-track [data-clone] { display: none; }
     }
 
     /* ==================== FAQ ==================== */

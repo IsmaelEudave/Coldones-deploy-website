@@ -381,27 +381,33 @@
     .rev-source-logos { display: inline-flex; align-items: center; gap: 0.55rem; }
     .rev-source-logos i { font-size: 1.05rem; }
 
-    /* marquee shell */
+    /* marquee shell — mirrors .trust-bar/.trust-scroller structure */
     .rev-marquee {
       overflow: hidden;
       margin-top: 3.5rem;
-      -webkit-mask: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-              mask: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      -webkit-mask: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+              mask: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
     }
     @keyframes rev-scroll-x {
       from { transform: translate3d(0, 0, 0); }
       to   { transform: translate3d(-50%, 0, 0); }
     }
+    /* animated outer wrapper (like .trust-scroller) */
     .rev-track {
-      display: flex; flex-direction: row; gap: 1.5rem;
+      display: flex;
       width: max-content;
-      will-change: transform; transform: translateZ(0);
+      will-change: transform;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       animation: rev-scroll-x 32s linear infinite;
     }
     .rev-marquee:hover .rev-track,
     .rev-marquee:focus-within .rev-track { animation-play-state: paused; }
+    /* one set of cards (like .trust-track) */
+    .rev-set {
+      display: flex; align-items: stretch; gap: 1.5rem;
+      flex-shrink: 0; padding-right: 1.5rem;
+    }
 
     .rev-card {
       width: 340px; flex-shrink: 0;
@@ -462,19 +468,6 @@
     .rev-source--yelp i { color: #d32323; }
 
     @media (max-width: 640px) { .rev-card { width: 280px; } }
-
-    @media (prefers-reduced-motion: reduce) {
-      .rev-marquee {
-        overflow: visible;
-        -webkit-mask: none; mask: none;
-      }
-      .rev-track {
-        animation: none;
-        flex-wrap: wrap; width: auto;
-        justify-content: center;
-      }
-      .rev-track [data-clone] { display: none; }
-    }
 
     /* ==================== FAQ ==================== */
     .faq-sec { background: var(--white); }
@@ -1220,7 +1213,10 @@
       <!-- Cards are injected by the reviews marquee script (single source of truth:
            the REVIEWS array near the bottom of this file). Only 5-star reviews render. -->
       <div class="rev-marquee" id="revMarquee" role="region" aria-label="5-star customer reviews from Google and Yelp">
-        <div class="rev-track"></div>
+        <div class="rev-track">
+          <div class="rev-set"></div>
+          <div class="rev-set" aria-hidden="true"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -2015,15 +2011,18 @@
           '</article>';
       }
 
-      var track = marquee.querySelector('.rev-track');
-      if (!track) return;
+      var sets = marquee.querySelectorAll('.rev-set');
+      if (!sets.length) return;
 
-      var html = '';
-      // First set — focusable/readable
-      data.forEach(function (r) { html += cardHTML(r, true); });
-      // Duplicate set for seamless translateX(-50%) loop
-      data.forEach(function (r) { html += cardHTML(r, false); });
-      track.innerHTML = html;
+      // Set 1: readable/focusable cards
+      var html1 = '';
+      data.forEach(function (r) { html1 += cardHTML(r, true); });
+      sets[0].innerHTML = html1;
+
+      // Set 2: duplicate for seamless translateX(-50%) loop
+      var html2 = '';
+      data.forEach(function (r) { html2 += cardHTML(r, false); });
+      sets[1].innerHTML = html2;
     })();
   </script>
 

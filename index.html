@@ -383,23 +383,28 @@
 
     /* marquee shell */
     .rev-marquee {
-      display: flex; justify-content: center; gap: 1.5rem;
-      margin-top: 3.5rem; max-height: 660px; overflow: hidden;
-      -webkit-mask: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
-              mask: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
+      overflow: hidden;
+      margin-top: 3.5rem;
+      -webkit-mask: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+              mask: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
     }
-    @keyframes rev-scroll-up { to { transform: translateY(-50%); } }
-    .rev-col { width: 100%; max-width: 360px; }
+    @keyframes rev-scroll-x {
+      from { transform: translate3d(0, 0, 0); }
+      to   { transform: translate3d(-50%, 0, 0); }
+    }
     .rev-track {
-      display: flex; flex-direction: column; gap: 1.5rem;
+      display: flex; flex-direction: row; gap: 1.5rem;
+      width: max-content;
       will-change: transform; transform: translateZ(0);
       backface-visibility: hidden;
-      animation: rev-scroll-up var(--rev-dur, 26s) linear infinite;
+      -webkit-backface-visibility: hidden;
+      animation: rev-scroll-x 32s linear infinite;
     }
     .rev-marquee:hover .rev-track,
     .rev-marquee:focus-within .rev-track { animation-play-state: paused; }
 
     .rev-card {
+      width: 340px; flex-shrink: 0;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 18px; padding: 1.75rem;
@@ -456,22 +461,17 @@
     .rev-source--google i { color: #4285F4; }
     .rev-source--yelp i { color: #d32323; }
 
-    @media (max-width: 1024px) { .rev-col--3 { display: none; } }
-    @media (max-width: 767px)  { .rev-col--2 { display: none; } .rev-marquee { max-height: 560px; } }
+    @media (max-width: 640px) { .rev-card { width: 280px; } }
 
     @media (prefers-reduced-motion: reduce) {
-      /* No auto-scroll: lay the reviews out as a tidy static grid instead. */
       .rev-marquee {
-        max-height: none; overflow: visible;
+        overflow: visible;
         -webkit-mask: none; mask: none;
       }
-      .rev-col--2, .rev-col--3 { display: none; }
-      .rev-col--1 { width: 100%; max-width: 780px; }
       .rev-track {
         animation: none;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.5rem;
+        flex-wrap: wrap; width: auto;
+        justify-content: center;
       }
       .rev-track [data-clone] { display: none; }
     }
@@ -1220,9 +1220,7 @@
       <!-- Cards are injected by the reviews marquee script (single source of truth:
            the REVIEWS array near the bottom of this file). Only 5-star reviews render. -->
       <div class="rev-marquee" id="revMarquee" role="region" aria-label="5-star customer reviews from Google and Yelp">
-        <div class="rev-col rev-col--1"><div class="rev-track"></div></div>
-        <div class="rev-col rev-col--2" aria-hidden="true"><div class="rev-track"></div></div>
-        <div class="rev-col rev-col--3" aria-hidden="true"><div class="rev-track"></div></div>
+        <div class="rev-track"></div>
       </div>
     </div>
   </section>
@@ -2017,24 +2015,15 @@
           '</article>';
       }
 
-      var tracks = marquee.querySelectorAll('.rev-track');
-      Array.prototype.forEach.call(tracks, function (track, ci) {
-        // Rotate the pool per column so the three columns are visually offset,
-        // even with a small number of reviews.
-        var off = ci % data.length;
-        var rotated = data.slice(off).concat(data.slice(0, off));
-        var canonical = ci === 0; // column 1 is the readable / focusable copy
+      var track = marquee.querySelector('.rev-track');
+      if (!track) return;
 
-        var html = '';
-        // First set (focusable + readable only in the canonical column)
-        rotated.forEach(function (r) { html += cardHTML(r, canonical); });
-        // Duplicate set so translateY(-50%) loops seamlessly (always non-focusable)
-        rotated.forEach(function (r) { html += cardHTML(r, false); });
-        track.innerHTML = html;
-
-        // Stagger speeds a little per column for an organic feel.
-        track.style.setProperty('--rev-dur', (24 + ci * 4) + 's');
-      });
+      var html = '';
+      // First set — focusable/readable
+      data.forEach(function (r) { html += cardHTML(r, true); });
+      // Duplicate set for seamless translateX(-50%) loop
+      data.forEach(function (r) { html += cardHTML(r, false); });
+      track.innerHTML = html;
     })();
   </script>
 
